@@ -28,20 +28,20 @@
   border-radius: 0;
 }
 :root {
-  --text-color: #48494e;
-  --heading: #090f32;
-  --prime-one: #ff8c24;
-  --prime-two: #ff733b;
-  --prime-three: #6a45ff;
-  --prime-four: #ffcd45;
-  --prime-five: #007bff;
-  --prime-six: #ffd338;
-  --prime-seven: linear-gradient(-90deg, #ff7df2 0%, #ff275b 100%);
-  --prime-eight: #ffed4e;
-  --prime-nine: #090f32;
-  --prime-ten: #090f32;
-  --prime-eleven: #ffce4c;
-  --prime-twelve: #ffe500;
+  --text-color: #3f4a45;
+  --heading: #0f2d24;
+  --prime-one: #16a34a;
+  --prime-two: #15803d;
+  --prime-three: #0d9488;
+  --prime-four: #34d399;
+  --prime-five: #16a34a;
+  --prime-six: #4ade80;
+  --prime-seven: linear-gradient(-90deg, #34d399 0%, #16a34a 100%);
+  --prime-eight: #a7f3d0;
+  --prime-nine: #0f2d24;
+  --prime-ten: #0f2d24;
+  --prime-eleven: #4ade80;
+  --prime-twelve: #86efac;
 }
 ::selection {
   background-color: #2a2a2a;
@@ -833,7 +833,7 @@ body .btn-sixteen:before {
   width: 100%;
   height: 100%;
   border-radius: 30px;
-  background: linear-gradient(90deg, #ff7df2 0%, #ff275b 100%);
+  background: linear-gradient(90deg, #15803d 0%, #0f5b2c 100%);
   opacity: 0;
   z-index: -1;
   transition: opacity 0.3s ease-in-out;
@@ -9816,6 +9816,56 @@ body .btn-twentyFive:hover {
 }
 .card-style-twentyFour .icon {
   height: 42px;
+}
+
+/* ==========================================================================
+   Devora brand overrides — flat green theme
+   ========================================================================== */
+.footer-style-seven .bg-wrapper {
+  background: #ECFDF5;
+}
+.fancy-short-banner-ten .bg-wrapper {
+  background: #0F2D24;
+}
+.hero-banner-eight .hero-heading span,
+.hero-banner-eight .video-icon .icon i {
+  background: linear-gradient(270.78deg, #34d399 4.19%, #16a34a 96.11%) !important;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.title-style-five .sc-title-two {
+  color: #16a34a;
+}
+
+/* Force every button/CTA on the site to hover into the green palette.
+   Overrides any leftover pink, red, or purple gradients from the legacy theme. */
+body .btn-sixteen,
+body .btn-sixteen:before,
+body .btn-sixteen:hover,
+body .btn-sixteen:hover:before,
+body .btn-fourteen:hover:before,
+body .btn-fifteen:hover:before {
+  background: var(--prime-seven) !important;
+}
+body .btn-sixteen,
+body .btn-sixteen:hover {
+  color: #fff !important;
+}
+body .btn-sixteen:hover:before {
+  background: linear-gradient(90deg, #0f5b2c 0%, #15803d 100%) !important;
+}
+.theme-main-menu .start-btn-one:hover,
+.theme-main-menu .start-btn-one:hover:before {
+  background-color: var(--prime-one) !important;
+  border-color: var(--prime-one) !important;
+  color: #fff !important;
+}
+.theme-main-menu .start-btn-one:hover:before {
+  background: var(--prime-one) !important;
+}
+.navbar .navbar-nav .nav-item:hover .nav-link,
+.navbar .dropdown-menu .dropdown-item:hover {
+  color: var(--prime-one) !important;
 }
 
 

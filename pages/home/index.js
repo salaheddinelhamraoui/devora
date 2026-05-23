@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { FloatingWhatsApp } from "react-floating-whatsapp";
 import { useIntl } from "react-intl";
 
 import Seo from "../../components/common/Seo";
@@ -20,7 +19,7 @@ const WebHosting = () => {
 
   return (
     <>
-      <Seo pageTitle="Genova Tech - WordPress Maintenance, Security & SEO Services" />
+      <Seo pageTitle="Devora - WordPress Maintenance, Security & SEO Services" />
 
       <Header2 />
 
@@ -47,7 +46,7 @@ const WebHosting = () => {
               <div className="d-inline-block consult-text fs-18 fw-500 tx-dark">
                 {intl.formatMessage({ id: "help.title" })}
                 <a
-                  href="https://wa.me/message/ECIODZL22YNMH1"
+                  href="/contact"
                   className="fw-normal text-decoration-underline"
                 >
                   {intl.formatMessage({ id: "help.buttonText" })}
@@ -119,7 +118,7 @@ const WebHosting = () => {
                     <div className="col-xl-6 col-lg-7">
                       <div className="d-sm-flex align-items-center justify-content-center justify-content-lg-end">
                         <Link
-                          href="https://wa.me/message/ECIODZL22YNMH1"
+                          href="/contact"
                           className="btn-line fw-500 tran3s position-relative me-sm-5"
                         >
                           {intl.formatMessage({

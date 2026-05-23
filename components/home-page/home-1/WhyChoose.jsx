@@ -6,21 +6,21 @@ const accordionItems = [
     icon: "/images/icon/icon_108.svg",
     title: "Geringster Preis.",
     content:
-      "Genova TV bietet die günstigsten Preise für hochwertige IP-TV-Dienste in Deutschland an.",
+      "Devora bietet die günstigsten Preise für hochwertige IP-TV-Dienste in Deutschland an.",
   },
   {
     id: 2,
     icon: "/images/icon/icon_109.svg",
     title: "Schnellste Server",
     content:
-      "Wir bieten den schnellsten Service auf dem Markt an, um sicherzustellen, dass Sie Ihre Inhalte mit Genova TV reibungslos und ohne Verzögerungen streamen können.",
+      "Wir bieten den schnellsten Service auf dem Markt an, um sicherzustellen, dass Sie Ihre Inhalte mit Devora reibungslos und ohne Verzögerungen streamen können.",
   },
   {
     id: 3,
     icon: "/images/icon/icon_110.svg",
     title: "Garantierter Service",
     content:
-      "Wir bieten einen garantierten Service, sodass Sie sich auf Genova TV verlassen können, um Ihnen eine zuverlässige und qualitativ hochwertige IP-TV-Erfahrung zu bieten.",
+      "Wir bieten einen garantierten Service, sodass Sie sich auf Devora verlassen können, um Ihnen eine zuverlässige und qualitativ hochwertige IP-TV-Erfahrung zu bieten.",
   },
 ];
 

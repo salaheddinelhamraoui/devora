@@ -68,7 +68,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Genova Tech LTD
+                Devora Systems
               </a>
             </p>
           </div>

@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <meta
           name="description"
-          content="Genova Tech LTD, Your SEO experts"
+          content="Devora - WordPress maintenance, security and SEO experts. Operated by Devora Systems."
         />
         <meta
           name="keywords"

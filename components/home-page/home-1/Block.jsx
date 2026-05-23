@@ -15,13 +15,13 @@ const Block = () => {
         </div>
         <div className="col-md-7 col-sm-8 wow fadeInDown">
           <div className="block-wrapper block-one">
-            <h3 style={{ color: "#FFAE10" }}>
+            <h3 style={{ color: "#16A34A" }}>
               {intl.formatMessage({ id: "" })}+23.000 zufriedene Kunden
             </h3>
             <p>
               {intl.formatMessage({ id: "" })} Mit über 23.000 zufriedenen
               Kunden sind wir stolz darauf, einen herausragenden Service bei
-              Genova TV anzubieten.
+              Devora anzubieten.
             </p>
           </div>
           {/* /.block-wrapper */}
@@ -32,7 +32,7 @@ const Block = () => {
       <div className="row gx-xxl-5" data-aos="fade-down">
         <div className="col-sm-7 wow fadeInDown">
           <div className="block-wrapper block-two position-relative mt-50 sm-mt-30">
-            <h3 style={{ color: "#9650EF" }}>
+            <h3 style={{ color: "#15803D" }}>
               27+ <br />
               <span>
                 {" "}
@@ -41,7 +41,7 @@ const Block = () => {
             </h3>
             <p>
               {intl.formatMessage({ id: "" })} Mit über 27 Servern in ganz
-              Deutschland garantiert Genova TV eine umfassende Abdeckung und
+              Deutschland garantiert Devora eine umfassende Abdeckung und
               optimale Streaming-Performance.
             </p>
             <img
@@ -56,7 +56,7 @@ const Block = () => {
 
         <div className="col-sm-5 wow fadeInUp">
           <div className="block-wrapper block-three mt-50 sm-mt-30">
-            <h3 style={{ color: "#00BDE6" }}>
+            <h3 style={{ color: "#0EA5E9" }}>
               <span>{intl.formatMessage({ id: "" })}Hilfe</span>
             </h3>
             <p>

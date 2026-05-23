@@ -18,10 +18,9 @@ const Footer2 = () => {
     {
       title: intl.formatMessage({ id: "menu.steun" }),
       links: [
-        { label: intl.formatMessage({ id: "menu.forum" }), url: "/" },
         {
-          label: intl.formatMessage({ id: "menu.liveChat" }),
-          url: "https://wa.me/message/ECIODZL22YNMH1",
+          label: intl.formatMessage({ id: "menu.contactUs" }),
+          url: "/contact",
         },
         {
           label: intl.formatMessage({ id: "menu.privacyPolicy" }),
@@ -30,6 +29,10 @@ const Footer2 = () => {
         {
           label: intl.formatMessage({ id: "menu.refundPolicy" }),
           url: "/refund-policy",
+        },
+        {
+          label: "Terms of Service",
+          url: "/terms-of-service",
         },
       ],
     },

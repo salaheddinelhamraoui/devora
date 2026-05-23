@@ -15,14 +15,14 @@ const BlockContact = () => {
       icon: "/images/icon/icon_148.svg",
       title: intl.formatMessage({ id: "contact.2.title" }),
       content: intl.formatMessage({ id: "contact.2.content" }),
-      link: "tel:+33644655232",
+      link: "mailto:contact@devorasystems.com",
       delay: "200",
     },
     {
       icon: "/images/icon/icon_149.svg",
       title: intl.formatMessage({ id: "contact.3.title" }),
       content: intl.formatMessage({ id: "contact.3.content" }),
-      delay: "300",
+      link: "mailto:contact@devorasystems.com",
       delay: "300",
     },
   ];
@@ -50,7 +50,7 @@ const BlockContact = () => {
                     block.link.includes("tel:") ? "call" : "webaddress"
                   }
                 >
-                  {block.link.replace("tel:", "")}
+                  {block.link.replace(/^(tel:|mailto:)/, "")}
                 </a>
               )}
             </p>
