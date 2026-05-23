@@ -45,12 +45,12 @@ const WebHosting = () => {
             <div className="text-center mt-100 lg-mt-50 " data-aos="fade-up">
               <div className="d-inline-block consult-text fs-18 fw-500 tx-dark">
                 {intl.formatMessage({ id: "help.title" })}
-                <a
+                <Link
                   href="/contact"
                   className="fw-normal text-decoration-underline"
                 >
                   {intl.formatMessage({ id: "help.buttonText" })}
-                </a>
+                </Link>
               </div>
             </div>
           </div>
