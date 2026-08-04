@@ -1,14 +1,9 @@
 /** @type {import('next').NextConfig} */
-
 const nextConfig = {
   reactStrictMode: true,
-  i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
-    localeDetection: false,
-    localePrefix: 'never',
-    alternateLinks: false
+  images: {
+    formats: ["image/avif", "image/webp"],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Devora Kit
 
-## Getting Started
+A Notion template storefront built with Next.js (pages router), Tailwind CSS and MDX.
 
-First, run the development server:
+Visitors browse templates on the home page and the shop, open a detail page, and click through to
+an external checkout link that you control per product.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Project structure
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```
+content/templates/*.mdx     One file per product: frontmatter + long description
+lib/templates.js            Reads the MDX files, builds the product objects
+lib/site.js                 Site name, nav, footer, benefits, testimonials, FAQ
+components/                 layout/, home/, templates/, ui/, common/
+pages/                      index, templates/, templates/[slug], about, contact, faq, legal
+public/templates/<slug>/    Product images
+styles/globals.css          Tailwind layers + the .prose-kit MDX styles
+tailwind.config.js          Colour palette, fonts, shadows, animations
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Everything is statically generated (`getStaticProps` / `getStaticPaths`), so the site can be
+deployed to any static-friendly host.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Adding a template
 
-## Learn More
+1. Create `content/templates/your-slug.mdx`. The filename is the URL: `/templates/your-slug`.
+2. Fill in the frontmatter (see the fields below), then write the long description in Markdown
+   below the `---`. Headings become sections and bullet lists render as feature chips.
+3. Drop the images in `public/templates/your-slug/` and reference them in `images`.
 
-To learn more about Next.js, take a look at the following resources:
+That is the whole process. No database, no CMS, no config to touch.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Frontmatter fields
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+| Field | Required | Notes |
+| --- | --- | --- |
+| `title` | yes | Product name |
+| `tagline` | yes | One line, shown on cards and under the title |
+| `description` | yes | Longer sentence, used for SEO and the "what's inside" intro |
+| `category` | yes | Drives the filters: `Students`, `Finance`, `Business` |
+| `price` | yes | Number, in euro. `14.9` renders as €14.90 |
+| `compareAtPrice` | no | Number. Set it and a strikethrough price plus discount badge appear. Leave it out unless the product genuinely sold at that price for the previous 30 days, which EU price-indication rules require |
+| `checkoutUrl` | no | **Your checkout link.** Empty = the buy button shows "Checkout opening soon" |
+| `previewUrl` | no | Public Notion preview link, shows a secondary button |
+| `images` | yes | List of paths under `/templates/<slug>/` |
+| `highlights` | no | Short bullets in the buy box |
+| `modules` | no | `emoji` / `title` / `body` cards in the "what's inside" grid |
+| `perfectFor` | no | Bullets in the sidebar |
+| `badge` | no | `Bestseller`, `New`, … shown on the card and detail page |
+| `accent` | no | Pastel background: `bg-pastel-rose\|butter\|mint\|sky\|lilac\|peach` |
+| `pages` | no | Free text shown under the price, e.g. "6 linked dashboards" |
+| `order` | no | Position in the grid, lower first |
 
-## Deploy on Vercel
+New categories appear in the filters and the home-page collections automatically. To give a new
+category its own colour and icon, add it to `CATEGORY_STYLES` in
+`components/home/Categories.jsx`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Connecting checkout
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Each product links out to whatever checkout you use: Gumroad, Lemon Squeezy, Stripe Payment
+Links, Payhip, Shopify. Paste the URL into `checkoutUrl` in that product's MDX file:
+
+```yaml
+checkoutUrl: "https://your-store.lemonsqueezy.com/checkout/buy/xxxxx"
+```
+
+The buy button then opens it in a new tab. While `checkoutUrl` is empty the button is disabled and
+labelled "Checkout opening soon", so an unfinished product can never take a payment.
+
+## Editing site copy
+
+Nav links, footer columns, benefits, testimonials and the FAQ all live in `lib/site.js`. Change the
+brand name, support email and social links at the top of that file. The announcement bar text is in
+`components/layout/AnnouncementBar.jsx`.
+
+## Company and legal details
+
+The registered company name, address and support email live in the `company` object in
+`lib/site.js`, and every legal page, the footer and the contact page read from it. Change it in one
+place and it updates everywhere.
+
+The site ships with the pages a payment provider normally asks to see before approving an account:
+terms of service, privacy policy, delivery policy, refund policy and licence, all linked from the
+footer, plus the company name, registered address and contact email on every page.
+
+Prices are shown in euro. The currency symbol and code are set in `site.currency` and
+`site.currencySymbol`, and `lib/format.js` formats every price on the site.
+
+## Images
+
+Product images live in `public/templates/<slug>/`. Cards use a 4:3 crop, so landscape images around
+1200×900 work best. They are served through `next/image`, which handles resizing and modern formats.
+
+> The images currently in the repo are placeholders pulled from a reference store. They carry that
+> store's marketing overlays and claims, and must be replaced with your own artwork before the site
+> goes live.
+
+## Deploying
+
+Any Next.js host works. On Vercel, import the repo and accept the defaults. No environment
+variables are needed.
+
+```bash
+npm run build
+npm start
+```
