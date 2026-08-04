@@ -30,3 +30,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# generated delivery PDFs — they carry the private Notion duplication links,
+# so they are never committed and never served from public/
+/deliverables

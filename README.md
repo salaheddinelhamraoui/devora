@@ -74,6 +74,36 @@ checkoutUrl: "https://your-store.lemonsqueezy.com/checkout/buy/xxxxx"
 The buy button then opens it in a new tab. While `checkoutUrl` is empty the button is disabled and
 labelled "Checkout opening soon", so an unfinished product can never take a payment.
 
+## Delivery PDFs
+
+Each template has a two-page PDF that the customer receives after paying: a
+thank-you page with a button linking to the Notion template, and a setup guide.
+
+```bash
+npm run pdfs
+```
+
+This reads every file in `content/templates/` and writes
+`deliverables/<slug>-delivery.pdf`. The button uses the `notionUrl` field from
+that template's frontmatter:
+
+```yaml
+notionUrl: "https://yourworkspace.notion.site/your-template"
+```
+
+While `notionUrl` is empty the button renders as a visible placeholder with no
+link, and the script warns you, so an unfinished PDF cannot be sent by mistake.
+
+**These files must not go in `public/`.** They contain the duplication link, so
+anything served from the website is effectively the product itself, free to
+anyone with the URL. `deliverables/` is gitignored for the same reason. Upload
+each PDF to your payment provider as that product's digital file (Lemon Squeezy,
+Payhip, Gumroad and Stripe all attach a file to a product and email it on
+payment) and let the provider handle delivery.
+
+Company details, support email and policy links in the PDF come from the
+constants at the top of `scripts/generate-delivery-pdfs.mjs`.
+
 ## Editing site copy
 
 Nav links, footer columns, benefits, testimonials and the FAQ all live in `lib/site.js`. Change the
