@@ -21,9 +21,9 @@ export default function Gallery({ images, title, accent = "bg-pastel-lilac" }) {
   const go = (next) => setActive((next + images.length) % images.length);
 
   return (
-    <div>
+    <div className="w-full min-w-0">
       <div
-        className={`relative aspect-[4/3] overflow-hidden rounded-4xl ${accent} shadow-soft ring-1 ring-ink/8`}
+        className={`relative aspect-[4/3] w-full overflow-hidden rounded-4xl ${accent} shadow-soft ring-1 ring-ink/8`}
       >
         {/* Once warm, every slide stays mounted so stepping through the gallery
             is an instant opacity swap rather than a fresh download. */}

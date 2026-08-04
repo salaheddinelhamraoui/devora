@@ -81,11 +81,13 @@ export default function TemplateDetail({ template, mdxSource, related }) {
 
       <section className="container-page mt-8">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
-          <div>
+          {/* min-w-0 stops the thumbnail strip's intrinsic width from blowing
+              out the grid column on narrow screens */}
+          <div className="min-w-0">
             <Gallery images={images} title={title} accent={accent} />
           </div>
 
-          <div className="lg:sticky lg:top-24 lg:self-start">
+          <div className="min-w-0 lg:sticky lg:top-24 lg:self-start">
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-cream-200 px-3 py-1 text-[0.7rem] font-bold uppercase tracking-[0.12em] text-ink-muted">
                 {category}
@@ -147,11 +149,11 @@ export default function TemplateDetail({ template, mdxSource, related }) {
 
       <section className="container-page mt-24 sm:mt-32">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_0.6fr]">
-          <div className="prose-kit max-w-none">
+          <div className="prose-kit min-w-0 max-w-none">
             <MDXRemote {...mdxSource} />
           </div>
 
-          <aside className="lg:sticky lg:top-24 lg:self-start">
+          <aside className="min-w-0 lg:sticky lg:top-24 lg:self-start">
             {perfectFor?.length ? (
               <div className={`rounded-3xl ${accent} p-6 ring-1 ring-ink/8`}>
                 <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-ink-muted">
