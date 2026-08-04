@@ -19,8 +19,8 @@ export default function FaqAccordion({ items }) {
               >
                 <span className="text-[0.98rem] font-semibold text-ink">{item.q}</span>
                 <span
-                  className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-ink/10 text-ink transition-transform duration-200 ${
-                    isOpen ? "rotate-45 bg-ink text-cream-50" : ""
+                  className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-ink/10 transition-transform duration-200 ${
+                    isOpen ? "rotate-45 bg-ink text-cream-50" : "text-ink"
                   }`}
                   aria-hidden="true"
                 >
