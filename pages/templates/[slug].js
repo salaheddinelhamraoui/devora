@@ -11,6 +11,7 @@ import Button from "@/components/ui/Button";
 import { getRelatedTemplates, getTemplate, getTemplateSlugs } from "@/lib/templates";
 import { company, faqs, site } from "@/lib/site";
 import { formatPrice } from "@/lib/format";
+import { useTemplateCheckout } from "@/lib/use-paddle";
 
 export default function TemplateDetail({ template, mdxSource, related }) {
   const {
@@ -28,6 +29,10 @@ export default function TemplateDetail({ template, mdxSource, related }) {
     checkoutUrl,
     slug,
   } = template;
+
+  // Held here rather than inside each buy control, so the BuyBox and the sticky
+  // mobile bar share one Paddle instance and one PricePreview request.
+  const checkout = useTemplateCheckout(template);
 
   const productJsonLd = {
     "@context": "https://schema.org",
@@ -117,7 +122,7 @@ export default function TemplateDetail({ template, mdxSource, related }) {
             </div>
 
             <div className="mt-8">
-              <BuyBox template={template} />
+              <BuyBox template={template} checkout={checkout} />
             </div>
           </div>
         </div>
@@ -207,13 +212,22 @@ export default function TemplateDetail({ template, mdxSource, related }) {
           <div>
             <p className="text-sm font-bold leading-tight text-ink">{title}</p>
             <p className="text-sm text-ink-muted">
-              <span className="font-bold text-ink">{formatPrice(price)}</span>
+              <span className="font-bold text-ink">{checkout.displayPrice}</span>
               {compareAtPrice ? (
                 <span className="ml-2 line-through">{formatPrice(compareAtPrice)}</span>
               ) : null}
             </p>
           </div>
-          {checkoutUrl ? (
+          {checkout.usesPaddle ? (
+            <button
+              type="button"
+              onClick={checkout.openCheckout}
+              disabled={!checkout.isReady}
+              className="btn btn-accent btn-md disabled:cursor-wait disabled:opacity-70"
+            >
+              Buy now
+            </button>
+          ) : checkoutUrl ? (
             <Button href={checkoutUrl} external variant="accent" size="md">
               Buy now
             </Button>

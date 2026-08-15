@@ -11,17 +11,15 @@ const GUARANTEES = [
   "Fully editable, nothing is locked",
 ];
 
-export default function BuyBox({ template }) {
-  const { title, price, compareAtPrice, discount, checkoutUrl, previewUrl, pages, highlights } =
-    template;
-  const hasCheckout = Boolean(checkoutUrl);
+export default function BuyBox({ template, checkout }) {
+  const { title, compareAtPrice, discount, checkoutUrl, previewUrl, pages, highlights } = template;
+  const { usesPaddle, isReady, openCheckout, displayPrice, isLocalised } = checkout;
+  const hasCheckout = usesPaddle || Boolean(checkoutUrl);
 
   return (
     <div className="card p-6 sm:p-7">
       <div className="flex items-end gap-3">
-        <span className="font-display text-[2.6rem] leading-none text-ink">
-          {formatPrice(price)}
-        </span>
+        <span className="font-display text-[2.6rem] leading-none text-ink">{displayPrice}</span>
         {compareAtPrice ? (
           <span className="pb-1 text-base font-medium text-ink-soft line-through">
             {formatPrice(compareAtPrice)}
@@ -38,7 +36,9 @@ export default function BuyBox({ template }) {
         One-time payment{pages ? ` · ${pages}` : ""} · Instant download
       </p>
       <p className="mt-1 text-xs text-ink-soft">
-        Price in euro (EUR). Any applicable tax is shown at checkout.
+        {isLocalised
+          ? "Price shown in your local currency. Any applicable tax is included at checkout."
+          : "Price in euro (EUR). Any applicable tax is shown at checkout."}
       </p>
 
       {highlights?.length ? (
@@ -68,15 +68,18 @@ export default function BuyBox({ template }) {
       ) : null}
 
       <div className="mt-7 space-y-3">
-        {hasCheckout ? (
-          <Button
-            href={checkoutUrl}
-            external
-            variant="accent"
-            size="lg"
-            className="w-full"
+        {usesPaddle ? (
+          <button
+            type="button"
+            onClick={openCheckout}
+            disabled={!isReady}
+            className="btn btn-accent btn-lg w-full disabled:cursor-wait disabled:opacity-70"
           >
-            Buy now for {formatPrice(price)}
+            {isReady ? `Buy now for ${displayPrice}` : "Loading checkout…"}
+          </button>
+        ) : hasCheckout ? (
+          <Button href={checkoutUrl} external variant="accent" size="lg" className="w-full">
+            Buy now for {displayPrice}
           </Button>
         ) : (
           <>

@@ -13,6 +13,8 @@
     "pdfs": "node scripts/generate-delivery-pdfs.mjs"
   },
   "dependencies": {
+    "@paddle/paddle-js": "^1.6.4",
+    "@paddle/paddle-node-sdk": "^3.10.0",
     "gray-matter": "^4.0.3",
     "next": "^13.5.11",
     "next-mdx-remote": "^6.0.0",
